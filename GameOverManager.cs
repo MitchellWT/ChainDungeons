@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
+    /* Checks If the play has pressed 'K' or 'L' and
+     * respectively restart or quits the game.
+     */
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))

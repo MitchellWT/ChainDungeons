@@ -2,20 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* This script was not used in the game
+ * and only exists for testing purposes.
+ */
 public class FlyingEnemy : MonoBehaviour
 {
     public Rigidbody2D enemyBody;
+    /* The start position and end position
+     * dictate the bounds of the flying enemy movement.
+     */
     public Transform startPosition;
     public Transform endPosition;
     public float movementSpeedAndDirection;
 
-    // Start is called before the first frame update
+    // Sets enemy position to start position.
     void Start()
     {
         transform.position = startPosition.position;
     }
 
-    // Frame independent update method
+    /* Moves enemy along path between start and end position
+     * and changes direction If position equals end position.
+     */
     void FixedUpdate()
     {
         enemyBody.velocity = new Vector2(movementSpeedAndDirection * Time.fixedDeltaTime, 0);

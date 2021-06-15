@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class CreditsManager : MonoBehaviour
 {
+    /* Pauses the player footstep audio when
+     * the credit screen starts.
+     */
     void Start()
     {
         FindObjectOfType<AudioManager>().PauseClip("player-footsteps");
     }
 
-    // Update is called once per frame
+    /* Checks If 'Escape', 'K', or 'L' was pressed. If it
+     * was pressed the game quits.
+     */
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.L))

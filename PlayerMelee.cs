@@ -2,19 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles the plays melee interactions.
 public class PlayerMelee : MonoBehaviour
 {
+    /* The transform for the separate
+     * attack point game object.
+     */
     public Transform attackPoint;
     public float attackRange = 0.5f;
+    /* This layer mask contains a layer
+     * that only consists of the enemy
+     * objects.
+     */
     public LayerMask enemyLayer;
 
-    // Start is called before the first frame update
+    // Unused start method.
     private void Start()
     {
         
     }
 
-    // Update is called once per frame
+    /* Checks If the player has pressed
+     * the attack key ('K') and triggers the 
+     * 'Attack' method.
+     */
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
@@ -23,6 +34,10 @@ public class PlayerMelee : MonoBehaviour
         }
     }
 
+    /* Plays attack animation with sound and checks
+     * Multiple enemies can be hit. If an enemy was hit the 'enemyHit'
+     * method was called on said enemy.
+     */
     private void Attack()
     {
         StopAllCoroutines();
@@ -38,6 +53,12 @@ public class PlayerMelee : MonoBehaviour
             ((Enemy) enemyComponent).enemyHit();
         }
     }
+
+    /* Renders attack image for 0.1 seconds 
+     * and then unrenders it. This sprite renderer
+     * should be stored in the object. Calling it every time
+     * the animation occurs is not optimized.
+     */
     private IEnumerator attackAnimation()
     {
         SpriteRenderer attackSprite = GameObject.FindWithTag("slash").GetComponent(typeof(SpriteRenderer)) as SpriteRenderer;
@@ -49,6 +70,7 @@ public class PlayerMelee : MonoBehaviour
         attackSprite.enabled = false;
     }
 
+    // Helper method for viewing the 'attackPoint' area.
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
